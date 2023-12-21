@@ -3,9 +3,11 @@ import toast from "react-hot-toast";
 import useAxiosPublic from "../../hook/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const TaskFrom = () => {
-
+    const {user} = useContext(AuthContext)
     const { register, handleSubmit ,reset } = useForm();
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
@@ -19,6 +21,9 @@ const TaskFrom = () => {
               priority: data.priority,
               deadline: data.deadline,
               description: data.description,
+              email: user?.email,
+              userName: user?.displayName,
+              photo: user?.photoURL 
               
           }
         //   send data to the database 
