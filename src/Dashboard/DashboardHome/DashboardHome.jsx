@@ -1,42 +1,36 @@
+import { useEffect, useState } from "react";
+import CreateTask from "../CreateTask/CreateTask";
+import TaskFrom from "../TaskForm/TaskFrom";
+import ListTask from "../CreateTask/ListTask/ListTask";
 import { useQuery } from "@tanstack/react-query";
-import { IoMdAddCircle } from "react-icons/io";
-import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hook/useAxiosPublic";
-import { useContext } from "react";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+
 
 const DashboardHome = () => {
-const axiosPublic = useAxiosPublic()
-const {user} = useContext(AuthContext)
-    const {data: myTask} = useQuery({
-        queryKey: ['allSlot'],
-        queryFn : async () =>{
-            const res = await axiosPublic.get(`/getTask/${user?.email}`)
-            return res.data
-        }
-    })
-    console.log(myTask)
+    const axiosPublic = useAxiosPublic()
+    const [tasks, setTasks] = useState([])
+    console.log('tasks',tasks)
 
+    useEffect( () =>{
+        setTasks(JSON.parse(localStorage.getItem("tasks") ))
+        
+    } ,[])
+  
+    return (
+        <div className="px-56 bg-slate-100   mt-10">
+            {/* <TaskFrom></TaskFrom> */}
+            <h1>dashbord home</h1>
 
-  return (
-    <div className="md:px-56 mt-20">
-      this is dashboard home
-      <div>
-        <h1 className="text-2xl font-bold text-orange-500 drop-shadow-lg">
-          TO DO
-        </h1>
-
-        <div>
-         <Link to= '/dashboard/taskForm'>
-         <button className="btn">
-          <IoMdAddCircle className="text-2xl" />
-            Add Task
-          </button>
-         </Link>
+            <div className="flex flex-col items-center justify-center pt-4">
+                <CreateTask tasks={tasks} setTasks={setTasks}></CreateTask>
+                <ListTask tasks={tasks} setTasks={setTasks} ></ListTask>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default DashboardHome;
+  
+  
+  
+

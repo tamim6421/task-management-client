@@ -1,58 +1,99 @@
-import { useForm } from "react-hook-form"
+import { useContext, useState } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hook/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useContext } from "react";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
 
-const TaskFrom = () => {
+
+const CreateTask = ({tasks, setTasks}) => {
     const {user} = useContext(AuthContext)
     const { register, handleSubmit ,reset } = useForm();
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
 
-    
-  
-    const onSubmit = async (data) => {
-      console.log(data);
+     const [task, setTask] = useState({
+    title: '',
+    priority: '',
+    deadline: '',
+    description: '',
+    email:''
+  });
 
-          // now send the menu item data send the database 
-          const taskItem = {
-              title: data.title,
-              priority: data.priority,
-              deadline: data.deadline,
-              description: data.description,
-              email: user?.email,
-              userName: user?.displayName,
-              photo: user?.photoURL 
+//   console.log(task)
+
+
+    const onSubmit = async (data) => {
+        console.log(data);
+        setTask({
+            title: data.title,
+            priority: data.priority,
+            deadline: data.deadline,
+            description: data.description,
+            email:user?.email
+          });
+
+     
+          
+            // now send the menu item data send the database 
+            const taskItem = {
+                title: data.title,
+                priority: data.priority,
+                deadline: data.deadline,
+                description: data.description,
+                email: user?.email,
+                userName: user?.displayName,
+                photo: user?.photoURL ,
+                status: 'todo',
+                
+            }
+
+            setTasks((prevTasks) => {
+                // Ensure that prevTasks is an array, or initialize as an empty array
+                const currentTasks = Array.isArray(prevTasks) ? prevTasks : [];
               
-          }
-        //   send data to the database 
-          const taskResponse = await axiosPublic.post('/task', taskItem)
-          console.log(taskResponse.data)
-          if(taskResponse.data.insertedId){
-              reset()
-              //show success popup
+                const newList = [...currentTasks, taskItem];
+                localStorage.setItem("tasks", JSON.stringify(newList));
+                return newList;
+              });
+              reset();
+
               Swal.fire({
                 position: "top-center",
                 icon: "success",
-                title: ` Task added Successful`,
+                title: "Task added successfully",
                 showConfirmButton: false,
-                timer: 1500
+                timer: 1500,
               });
-             navigate('/dashboard')
-     
-      }
-    };
-  
+            
+            
+            // setTasks([taskItem])
+           
+          //   send data to the database 
+        //     const taskResponse = await axiosPublic.post('/task', taskItem)
+        //     console.log(taskResponse.data)
+        //     if(taskResponse.data.insertedId){
+        //         reset()
+        //         //show success popup
+        //         Swal.fire({
+        //           position: "top-center",
+        //           icon: "success",
+        //           title: ` Task added Successful`,
+        //           showConfirmButton: false,
+        //           timer: 1500
+        //         });
+        //        navigate('/dashboard')
+       
+        // }
+      };
     
 
-
     return (
-        <div className="px-28 bg-green-50 py-5 pt-10 mb-10 ">
+        <div>
+                 <div className=" bg-green-50 py-5 pt-10 mb-10 ">
         <h1 className="text-center text-orange-400 text-2xl font-bold drop-shadow-xl ">Added task</h1>
-      <div className="w-3/4 mx-auto">
-        <form className="shadow-xl rounded-lg p-3 w-3/4 mx-auto  pb-7" onSubmit={handleSubmit(onSubmit)}>
+      <div className=" mx-auto">
+        <form className="shadow-xl rounded-lg p-3  pb-7" onSubmit={handleSubmit(onSubmit)}>
 
           {/* recipe name  */}
 
@@ -62,6 +103,7 @@ const TaskFrom = () => {
             </label>
             <input
               {...register("title", { required: true })}
+
               type="text"
               placeholder="Task Title"
               className="input input-bordered w-full "
@@ -120,7 +162,8 @@ const TaskFrom = () => {
         </form>
       </div>
     </div>
+        </div>
     );
 };
 
-export default TaskFrom;
+export default CreateTask;
