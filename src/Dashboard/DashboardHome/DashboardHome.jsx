@@ -6,6 +6,9 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hook/useAxiosPublic";
 
 
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
 const DashboardHome = () => {
     const axiosPublic = useAxiosPublic()
     const [tasks, setTasks] = useState([])
@@ -17,15 +20,19 @@ const DashboardHome = () => {
     } ,[])
   
     return (
-        <div className="px-56 bg-slate-100   mt-10">
+
+        <DndProvider backend={HTML5Backend}>
+             <div className="md:pl-56 mx-auto bg-slate-100 ">
             {/* <TaskFrom></TaskFrom> */}
-            <h1>dashbord home</h1>
+        
 
             <div className="flex flex-col items-center justify-center pt-4">
                 <CreateTask tasks={tasks} setTasks={setTasks}></CreateTask>
                 <ListTask tasks={tasks} setTasks={setTasks} ></ListTask>
             </div>
         </div>
+        </DndProvider>
+       
     );
 };
 

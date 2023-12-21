@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
+import { useDrag, useDrop } from "react-dnd";
 import toast from "react-hot-toast";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
 import Swal from "sweetalert2";
 
 
@@ -44,6 +45,13 @@ const ListTask = ({tasks, setTasks}) => {
 export default ListTask;
 
 const Section = ({status, tasks, setTasks, todos, ongoing, completed}) =>{
+    const [{ isOver }, drop] = useDrop(() => ({
+        accept: "task",
+        drop: (item) => addItemToSection(item.title),
+        collect: (monitor) => ({
+          isOver: !!monitor.isOver()
+        })
+      }))
 
     let text = "Todo"
     let bg = "bg-orange-400"
@@ -60,8 +68,31 @@ const Section = ({status, tasks, setTasks, todos, ongoing, completed}) =>{
         tasksToMap = completed
     }
 
+    const addItemToSection = (title) =>{
+        // console.log("drop", title, status)
+        setTasks(prev => {
+            const modifiedTask = prev?.map(task => {
+                if(task.title == title){
+                    return {...task, status: status}
+                }
+                return task
+            })
+            localStorage.setItem("tasks", JSON.stringify(modifiedTask))
+            
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Task Stage Changed",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            
+            return modifiedTask
+        })
+    }
+
     return <>
-        <div className={`w-64`}>
+        <div ref={drop} className={`w-64 ${isOver ? "bg-slate-200" : ""}`}>
            <Header text = {text} bg = {bg} count={tasksToMap.length}></Header> 
            {
             tasksToMap.length > 0 && tasksToMap.map( (task, index) => <Task key={index} index={index} task={task} tasks={tasks} setTasks = {setTasks} ></Task> )
@@ -81,6 +112,17 @@ const Header = ({text, bg, count}) =>{
 
 const Task = ({task, tasks, setTasks}) =>{
 
+    const [{ isDragging }, drag] = useDrag(() => ({
+        type: "task",
+        item: {title: task.title},
+        collect: (monitor) => ({
+          isDragging: !!monitor.isDragging()
+        })
+      }))
+
+      console.log(isDragging)
+
+
     const handelRemove = (dead) =>{
         // console.log(dead)
       
@@ -94,7 +136,7 @@ const Task = ({task, tasks, setTasks}) =>{
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                const filterTask = tasks.filter(task => task.deadline !== dead)
+                const filterTask = tasks.filter(task => task.title !== dead)
                 localStorage.setItem("tasks", JSON.stringify(filterTask))
                 setTasks(filterTask)
               Swal.fire({
@@ -106,7 +148,7 @@ const Task = ({task, tasks, setTasks}) =>{
           });
     }
     return (
-        <div className={`p-3 mt-8 shadow-md bg-slate-200 rounded-md text-center  cursor-grab`}>
+        <div ref={drag} className={`p-3 mt-8 shadow-md bg-slate-200 rounded-md ${isDragging? "opacity-25" : "opacity-100"} text-center  cursor-grab`}>
           <p className="text-gray-500 font-bold text-xl">{task.title}</p>
           <div className="flex items-center gap-2 justify-center">
             <p>Priority: </p>
@@ -119,10 +161,13 @@ const Task = ({task, tasks, setTasks}) =>{
 
           <div>
           <button
-          onClick={() => handelRemove(task.deadline)}
-          className="btn btn-sm mt-3" >
+          onClick={() => handelRemove(task.title)}
+          className="  mt-3 mr-3 p-2" >
           
             <MdDelete className="text-2xl text-red-500 "></MdDelete>
+            </button>
+            <button className="p-2">
+                <MdEdit className="text-2xl text-green-500"></MdEdit>
             </button>
           </div>
         </div>
