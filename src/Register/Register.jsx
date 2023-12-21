@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 // import SocialLogin from "../Login/SocialLogin/SocialLogin";
 // import login from "../../assets/login1.json";
@@ -191,7 +192,7 @@ const Register = () => {
                   </p>
                 </div>
                 <div>
-                  {/* <SocialLogin></SocialLogin> */}
+                  <SocialLogin></SocialLogin>
                 </div>
               </form>
             </div>

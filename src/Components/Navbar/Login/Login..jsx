@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 // import Lottie from "lottie-react";
 // import Title from "../../Components/Title/Title";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import SocialLogin from "../../../SocialLogin/SocialLogin";
 
 const Login = () => {
     const{signInUser} = useContext(AuthContext)
@@ -118,7 +119,7 @@ const Login = () => {
                    <p className='text-green-400 mt-5'>New This Site? Please  <Link to='/register'>   <span className='text-orange-600 underline font-semibold'>  Register</span> </Link></p>
                  </div>
                  <div>
-                 {/* <SocialLogin></SocialLogin> */}
+                 <SocialLogin></SocialLogin>
                 </div>
                </form>
              </div>
