@@ -5,6 +5,7 @@ import Login from "../Components/Navbar/Login/Login.";
 import Register from "../Register/Register";
 import Dashboard from "../Dashboard/Dashboard";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
+import TaskFrom from "../Dashboard/TaskForm/TaskFrom";
 
 
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                path:'',
                element: <DashboardHome></DashboardHome>
+            },
+            {
+                path: 'taskForm',
+                element: <TaskFrom></TaskFrom>
             }
         ]
     }
