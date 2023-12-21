@@ -33,29 +33,28 @@ const Navbar = () => {
         <NavLink
   to="/"
   className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "text-green-500 text-lg bg-green-100 font-semibold" : "hover:bg-green-100  text-gray-600 text-lg"
+    isPending ? "pending" : isActive ? "text-green-500 text-lg font-semibold" : "hover:bg-green-100  text-gray-600 text-lg"
   }
 >
  Home
 </NavLink>
         </li>
      
-        {
-            user && <li>
+        <li>
             <NavLink
-      to="/"
+      to="dashboard"
       className={({ isActive, isPending }) =>
-        isPending ? "pending" : isActive ? "text-green-500 text-lg bg-green-100 font-semibold" : "hover:bg-green-100  text-gray-600 text-lg"
+        isPending ? "pending" : isActive ? "text-green-500 text-lg  font-semibold" : "hover:bg-green-100   text-lg"
       }
     >
     Dashboard
     </NavLink>
             </li>
-        }
+        
     </>
     return (
         <div className=" ">
-        <div className="navbar fixed z-10 max-w-[1200px] mx-auto bg-opacity-90 bg-white top-0 w-full  shadow-lg px-10 font-semibold text-rose-500 ">
+        <div className="navbar fixed z-10 max-w-[1200px] mx-auto bg-opacity-90 bg-white top-0 w-full  shadow-lg px-10 font-semibold  ">
 <div className="navbar-start">
 <div className="dropdown">
   <label tabIndex={0} className="btn  bg-[#43f16f5d] lg:hidden">

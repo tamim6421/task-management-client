@@ -3,6 +3,8 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../Home/Home";
 import Login from "../Components/Navbar/Login/Login.";
 import Register from "../Register/Register";
+import Dashboard from "../Dashboard/Dashboard";
+import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 
 
 
@@ -25,6 +27,16 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path:'dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+               path:'',
+               element: <DashboardHome></DashboardHome>
+            }
+        ]
+    }
     
         
     

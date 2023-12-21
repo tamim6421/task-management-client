@@ -57,6 +57,7 @@ const Register = () => {
               const userInfo = {
                 name: name,
                 email:email,
+                image:photo,
                 role : "user",
                
               }
