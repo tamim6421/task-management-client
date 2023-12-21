@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import useAxiosPublic from "../hook/useAxiosPublic";
+import toast from "react-hot-toast";
 
 // import SocialLogin from "../Login/SocialLogin/SocialLogin";
 // import login from "../../assets/login1.json";
@@ -13,7 +15,7 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 
 
 const Register = () => {
-//   const axiosPublic = useAxiosPublic()
+  const axiosPublic = useAxiosPublic()
   const { createUser, handleUpdateProfile } = useContext(AuthContext)
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
@@ -60,21 +62,15 @@ const Register = () => {
               }
 
               console.log(userInfo)
-              // axiosPublic.post('/users', userInfo )
-              // .then( res => {
-              //   console.log(res.data)
-              //   if(res.data.insertedId){
-              //     Swal.fire({
-              //       position: "top-center",
-              //       icon: "success",
-              //       title: "User Created Successful",
-              //       showConfirmButton: false,
-              //       timer: 1500
-              //     });
-              //     reset()
-              //     navigate('/')
-              //   }
-              // })
+              axiosPublic.post('/users', userInfo )
+              .then( res => {
+                console.log(res.data)
+                if(res.data.insertedId){
+                toast.success('User created Successful')
+                 
+                  navigate('/')
+                }
+              })
 
           event.target.reset();
 

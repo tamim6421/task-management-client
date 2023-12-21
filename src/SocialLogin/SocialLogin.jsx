@@ -1,25 +1,32 @@
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import useAxiosPublic from "../hook/useAxiosPublic";
+
 
 
 const SocialLogin = () => {
     const {googleLogin} = useContext(AuthContext)
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
 
     const handleSocialLogin = (social) =>{
         social()
         .then( res =>{
-            // eslint-disable-next-line no-unused-vars
-            const user = res.user
-            toast.success('Login Successful')
-            navigate('/')
+            console.log(res.user)
 
-        })
-        .catch( error =>{
-            toast.error(error.message)
+            const userInfo = {
+                email: res.user?.email,
+                name: res.user?.displayName,
+                role: 'member'
+            }
+            axiosPublic.post('/users', userInfo)
+            .then(res =>{
+                console.log(res.data)
+                navigate('/')
+            })
         })
     }
     return (
