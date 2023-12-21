@@ -39,36 +39,7 @@ const Navbar = () => {
  Home
 </NavLink>
         </li>
-        <li>
-        <NavLink
-  to="/allJobs"
-  className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "text-green-500 text-lg bg-green-100 font-semibold" : "hover:bg-green-100  text-gray-600 text-lg"
-  }
->
-Jobs
-</NavLink>
-        </li>
-        <li>
-        <NavLink
-  to="/addJobs"
-  className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "text-green-500 text-lg bg-green-50 font-semibold" : "hover:bg-green-100  text-gray-600 text-lg"
-  }
->
-  Add Jobs
-</NavLink>
-        </li>
-        <li>
-        <NavLink
-  to="/postedJobs"
-  className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "text-green-500 text-lg bg-green-100 font-semibold" : "hover:bg-green-100  text-gray-600 text-lg"
-  }
->
-  Posted Jobs
-</NavLink>
-        </li>
+     
 
     </>
     return (
@@ -85,7 +56,7 @@ Jobs
   </ul>
 </div>
 <Link to='/'><button className=" normal-case px-4  font-extrabold text-2xl">
-  <img className="w-28" src="https://i.ibb.co/bd4rzqD/attachment-101767836.jpg" alt="" />
+  <h1>Task.io</h1>
   </button></Link>
 </div>
 <div className="navbar-center hidden lg:flex">
