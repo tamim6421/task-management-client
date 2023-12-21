@@ -82,15 +82,27 @@ const Header = ({text, bg, count}) =>{
 const Task = ({task, tasks, setTasks}) =>{
 
     const handelRemove = (dead) =>{
-        console.log(dead)
-        const filterTask = tasks.filter(task => task.deadline !== dead)
-        setTasks(filterTask)
+        // console.log(dead)
+      
         Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Task Delete Successfully",
-            showConfirmButton: false,
-            timer: 1500,
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const filterTask = tasks.filter(task => task.deadline !== dead)
+                localStorage.setItem("tasks", JSON.stringify(filterTask))
+                setTasks(filterTask)
+              Swal.fire({
+                title: "Deleted!",
+                text: "Task deleted.",
+                icon: "success"
+              });
+            }
           });
     }
     return (
