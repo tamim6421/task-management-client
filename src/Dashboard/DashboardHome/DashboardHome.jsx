@@ -14,13 +14,13 @@ const DashboardHome = () => {
     const {user} = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
     const [tasks, setTasks] = useState([])
-    console.log('tasks',tasks)
+    // console.log('tasks',tasks)
 
     useEffect( () =>{
         const myTask = JSON.parse(localStorage.getItem("tasks") )
         const filterTask = myTask?.filter(task => task.email === user?.email)
 
-        console.log(filterTask)
+        // console.log(filterTask)
         setTasks(filterTask)
         
     } ,[user?.email])
@@ -28,7 +28,7 @@ const DashboardHome = () => {
     return (
 
         <DndProvider backend={HTML5Backend}>
-             <div className="md:pl-56 mx-auto  bg-slate-50 ">
+             <div className="md:pl-56 mx-auto mb-20 bg-slate-50 ">
             {/* <TaskFrom></TaskFrom> */}
         
 

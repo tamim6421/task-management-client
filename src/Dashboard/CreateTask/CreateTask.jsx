@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hook/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import image from '../../assets/task.svg'
 
 const CreateTask = ({tasks, setTasks}) => {
     const {user} = useContext(AuthContext)
@@ -91,8 +91,13 @@ const CreateTask = ({tasks, setTasks}) => {
     return (
         <div>
                  <div className=" bg-green-50 py-5 pt-10 mb-10 ">
-        <h1 className="text-center text-orange-400 text-2xl font-bold drop-shadow-xl ">Added task</h1>
-      <div className=" mx-auto ">
+        <h1 className="text-center text-orange-400 text-3xl font-bold drop-shadow-xl ">Added Your Task</h1>
+
+        <div className="hero min-h-screen ">
+  <div className="hero-content flex-col lg:flex-row-reverse">
+  <img src={image} className="max-w-sm rounded-lg " />
+    <div>
+    <div className=" mx-auto ">
         <form className="shadow-xl rounded-lg p-3 " onSubmit={handleSubmit(onSubmit)}>
 
          
@@ -161,6 +166,10 @@ const CreateTask = ({tasks, setTasks}) => {
                     <button className="btn bg-orange-400 text-white block mx-auto hover:bg-orange-600 drop-shadow-lg px-8 mt-5">Add Task</button>
         </form>
       </div>
+    </div>
+  </div>
+</div>
+    
     </div>
         </div>
     );

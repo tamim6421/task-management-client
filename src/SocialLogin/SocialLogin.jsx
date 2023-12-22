@@ -15,7 +15,7 @@ const SocialLogin = () => {
     const handleSocialLogin = (social) =>{
         social()
         .then( res =>{
-            console.log(res.user)
+            // console.log(res.user)
 
             const userInfo = {
                 email: res.user?.email,
@@ -35,7 +35,7 @@ const SocialLogin = () => {
           <button
             type="button"
             onClick= { ()=>handleSocialLogin(googleLogin)}
-            className="btn btn-outline btn-success w-full hover:text-white flex justify-between items-center cursor-pointer "
+            className="btn  w-full hover:text-white bg-green-200 hover:bg-green-500  flex justify-between items-center cursor-pointer "
           >
             Google
             <FcGoogle className="w-8 h-8" />
