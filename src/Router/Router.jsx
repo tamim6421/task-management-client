@@ -7,6 +7,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import TaskFrom from "../Dashboard/TaskForm/TaskFrom";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
+import ContactUs from "../Components/ContactUs/ContactUs";
 
 
 
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path:'register',
                 element:<Register></Register>
+            },
+            {
+                path: 'contact',
+                element: <ContactUs></ContactUs>
             }
         ]
     },

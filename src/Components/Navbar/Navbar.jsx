@@ -50,6 +50,16 @@ const Navbar = () => {
     Dashboard
     </NavLink>
             </li>
+        <li>
+            <NavLink
+      to="contact"
+      className={({ isActive, isPending }) =>
+        isPending ? "pending" : isActive ? "text-green-500 text-lg  font-semibold" : "hover:bg-green-100   text-lg"
+      }
+    >
+    Contact Us
+    </NavLink>
+            </li>
         
     </>
     return (
