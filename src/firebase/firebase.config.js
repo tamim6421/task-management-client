@@ -2,12 +2,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAsYsFFU_AuiXLlVUFoZskhS0GoEuBfvoI",
-  authDomain: "task-management-7207c.firebaseapp.com",
-  projectId: "task-management-7207c",
-  storageBucket: "task-management-7207c.appspot.com",
-  messagingSenderId: "449813526719",
-  appId: "1:449813526719:web:da70172b63d7a3f3a26e0a"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase
