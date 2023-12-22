@@ -104,7 +104,7 @@ const CreateTask = ({tasks, setTasks}) => {
 
           <div className="form-control w-full ">
             <label className="label">
-              <span className="label-text"> Task Title</span>
+              <span className="label-text text-gray-500 font-semibold"> Task Title</span>
             </label>
             <input
               {...register("title", { required: true })}
@@ -120,7 +120,7 @@ const CreateTask = ({tasks, setTasks}) => {
             {/* category section  */}
             <div className="form-control w-full ">
               <label className="label">
-                <span className="label-text">Task Priority</span>
+                <span className="label-text text-gray-500 font-semibold">Task Priority</span>
               </label>
               <select
               defaultValue='default'
@@ -141,7 +141,7 @@ const CreateTask = ({tasks, setTasks}) => {
 
             <div className="form-control w-full ">
               <label className="label">
-                <span className="label-text">Task Deadline</span>
+                <span className="label-text text-gray-500 font-semibold">Task Deadline</span>
               </label>
               <input
                 {...register("deadline", { required: true })}
@@ -155,7 +155,7 @@ const CreateTask = ({tasks, setTasks}) => {
             {/* recipe details  */}
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Task Description</span>
+                    <span className="label-text text-gray-500 font-semibold">Task Description</span>
                    
                 </label>
                 <textarea {...register("description", { required: true })} className="textarea textarea-bordered h-24" placeholder="Text here"></textarea>

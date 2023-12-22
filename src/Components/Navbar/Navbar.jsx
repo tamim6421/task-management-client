@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
+import image from '../../../public/projects.png'
 
 const Navbar = () => {
   const{user, logOut} = useContext(AuthContext)
@@ -52,6 +53,16 @@ const Navbar = () => {
             </li>
         <li>
             <NavLink
+      to="postTask"
+      className={({ isActive, isPending }) =>
+        isPending ? "pending" : isActive ? "text-green-500 text-lg  font-semibold" : "hover:bg-green-100   text-lg"
+      }
+    >
+    Post Task
+    </NavLink>
+            </li>
+        <li>
+            <NavLink
       to="contact"
       className={({ isActive, isPending }) =>
         isPending ? "pending" : isActive ? "text-green-500 text-lg  font-semibold" : "hover:bg-green-100   text-lg"
@@ -76,7 +87,9 @@ const Navbar = () => {
   </ul>
 </div>
 <Link to='/'><button className=" normal-case px-4  font-extrabold text-2xl">
-  <h1 className="text-orange-400">Task.io</h1>
+  <h1 className="text-orange-400 flex justify-center items-center gap-1"> 
+  <img className="w-6 h-6" src={image} alt="" />
+  Task.io</h1>
   </button></Link>
 </div>
 <div className="navbar-center hidden lg:flex">

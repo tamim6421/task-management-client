@@ -5,12 +5,15 @@ import { FaLocationDot } from "react-icons/fa6";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { AiTwotoneMail } from "react-icons/ai";
 import contact from "../../assets/contact.svg"
+import { Helmet } from "react-helmet-async";
 
 
 const ContactUs = () => {
     return (
         <div>
-           
+            <Helmet>
+              <title>Task.io | ContactUs</title>
+            </Helmet>
             
             <div className="text-center  mt-20">
          <p className="text-3xl drop-shadow-lg text-orange-400 pt-10"> Contact With Us</p>

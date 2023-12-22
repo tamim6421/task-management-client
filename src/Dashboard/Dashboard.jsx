@@ -15,7 +15,7 @@ const Dashboard = () => {
               <img src={user?.photoURL} />
             </div>
           </div>
-          <p className="text-white text-center">{user?.displayName}</p>
+          <p className="text-white text-lg font-semibold text-center">{user?.displayName}</p>
         </div>
         <ul className="px-5 pl-20 md:pl-10 space-y-10 mt-10 mb-4 text-center">
           <li>

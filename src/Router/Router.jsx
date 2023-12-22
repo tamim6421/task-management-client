@@ -8,6 +8,7 @@ import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import TaskFrom from "../Dashboard/TaskForm/TaskFrom";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import ContactUs from "../Components/ContactUs/ContactUs";
+import PostTask from "../Components/PostTask/PostTask";
 
 
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: 'contact',
                 element: <ContactUs></ContactUs>
+            },
+            {
+                path: 'postTask',
+                element: <PostTask></PostTask>
             }
         ]
     },
