@@ -17,7 +17,7 @@ const Dashboard = () => {
           </div>
           <p className="text-white text-center">{user?.displayName}</p>
         </div>
-        <ul className="px-5 space-y-10 mt-10 mb-4 text-center ">
+        <ul className="px-5 space-y-10 mt-10 mb-4 text-center">
           <li>
             <NavLink
               to="/dashboard"

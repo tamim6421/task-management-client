@@ -13,6 +13,7 @@ const Login = () => {
     const [showPass, setShowPass] = useState(false)
     const location = useLocation()
     const navigate = useNavigate()
+    const  from = location.state?.from.pathname || '/'
 
 
     const handleLogin = event =>{
@@ -45,7 +46,7 @@ const Login = () => {
           console.log(user)
          
           // Navigate after login 
-          navigate(location?.state ? location.state : '/')
+          navigate(from, {replace: true})
         })
   
   
@@ -63,14 +64,13 @@ const Login = () => {
         <div className="hero  min-h-screen">
            <div className="hero-content flex-col lg:flex-row-reverse bg-green-50">
              <div className="text-center lg:text-left">
-              <div className="mt-36">
-              {/* <Title>Login Now</Title> */}
-              </div>
+             
                <p className="">
-             {/* <Lottie animationData={login}></Lottie> */}
+           
                </p>
              </div>
              <div className="card flex-shrink-0 w-full max-w-sm ">
+              <p className="text-center text-3xl font-bold text-orange-400 drop-shadow-lg">Login</p>
                <form onSubmit={handleLogin} className="card-body">
                  
                  <div className="form-control ">

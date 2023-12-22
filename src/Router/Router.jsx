@@ -6,6 +6,7 @@ import Register from "../Register/Register";
 import Dashboard from "../Dashboard/Dashboard";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import TaskFrom from "../Dashboard/TaskForm/TaskFrom";
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
 
 
 
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
     },
     {
         path:'dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
         children: [
             {
                path:'',

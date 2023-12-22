@@ -90,13 +90,9 @@ const Register = () => {
        
         <div className="hero min-h-screen bg-green-50">
           <div className="hero-content flex-col lg:flex-row-reverse ">
-            <div className="text-center mt-10 lg:text-left">
-              {/* <Title>Register Now</Title> */}
-              <p className="py-6">
-                {/* <Lottie animationData={login}></Lottie> */}
-              </p>
-            </div>
-            <div className="card flex-shrink-0 w-full max-w-sm  ">
+           
+            <div className="card flex-shrink-0 w-full max-w-sm  mt-20 ">
+            <p className="text-center text-3xl font-bold text-orange-400 drop-shadow-lg">Register Now</p>
               <form onSubmit={handleRegister} className="card-body">
                 <div className="form-control ">
                   <label className="label">
