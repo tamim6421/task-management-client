@@ -15,9 +15,9 @@ const ListTask = ({tasks, setTasks}) => {
 
     useEffect( () =>{
 
-        const filterTodo = tasks.filter(task => task.status == 'todo')
-        const filterOngoing = tasks.filter(task => task.status == 'ongoing')
-        const filterComplete = tasks.filter(task => task.status == 'complete')
+        const filterTodo = tasks?.filter(task => task.status == 'todo')
+        const filterOngoing = tasks?.filter(task => task.status == 'ongoing')
+        const filterComplete = tasks?.filter(task => task.status == 'complete')
         setTodos(filterTodo)
         setOngoing(filterOngoing)
         setCompleted(filterComplete)
@@ -30,7 +30,7 @@ const ListTask = ({tasks, setTasks}) => {
 
     return (
         <div>
-            <h1>List</h1>
+            
             <div className="flex gap-20 flex-col md:flex-row">
                 {
                     statuses.map( (status, index) => <Section key={index} status={status} tasks ={tasks} setTasks = {setTasks} todos = {todos} ongoing = {ongoing} completed = {completed}>
@@ -92,10 +92,10 @@ const Section = ({status, tasks, setTasks, todos, ongoing, completed}) =>{
     }
 
     return <>
-        <div ref={drop} className={`w-64 ${isOver ? "bg-slate-200" : ""}`}>
-           <Header text = {text} bg = {bg} count={tasksToMap.length}></Header> 
+        <div ref={drop} className={` w-64  ${isOver ? "bg-slate-200" : ""}`}>
+           <Header text = {text} bg = {bg} count={tasksToMap?.length}></Header> 
            {
-            tasksToMap.length > 0 && tasksToMap.map( (task, index) => <Task key={index} index={index} task={task} tasks={tasks} setTasks = {setTasks} ></Task> )
+            tasksToMap?.length > 0 && tasksToMap?.map( (task, index) => <Task key={index} index={index} task={task} tasks={tasks} setTasks = {setTasks} ></Task> )
            }
         </div>
     </>
@@ -136,7 +136,7 @@ const Task = ({task, tasks, setTasks}) =>{
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                const filterTask = tasks.filter(task => task.title !== dead)
+                const filterTask = tasks?.filter(task => task.title !== dead)
                 localStorage.setItem("tasks", JSON.stringify(filterTask))
                 setTasks(filterTask)
               Swal.fire({
@@ -148,25 +148,30 @@ const Task = ({task, tasks, setTasks}) =>{
           });
     }
     return (
-        <div ref={drag} className={`p-3 mt-8 shadow-md bg-slate-200 rounded-md ${isDragging? "opacity-25" : "opacity-100"} text-center  cursor-grab`}>
+        <div ref={drag} className={`p-3 mt-8 shadow-md bg-slate-200 text-gray-500 space-y-4 rounded-md ${isDragging? "opacity-25" : "opacity-100"} text-center  cursor-grab`}>
           <p className="text-gray-500 font-bold text-xl">{task.title}</p>
+          <hr className="border-orange-500 my-3" /> 
           <div className="flex items-center gap-2 justify-center">
-            <p>Priority: </p>
+            <p className="text-gray-500 text-xl">Priority: </p>
             <p className="badge bg-green-500 text-white" >{task.priority}</p>
           </div>
           <div>
-            <p>Description : <span>{task.description}</span> </p>
+            <p >
+              <span className="text-lg text-gray-600 font-semibold" > Description : </span>
+            
+            <span>{task.description}</span>
+             </p>
           </div>
-            <p>DeadLine : <span>{task.deadline}</span></p>
+            <p className="text-lg font-bold">DeadLine : <span className="text-sm">{task.deadline}</span></p>
 
           <div>
           <button
           onClick={() => handelRemove(task.title)}
-          className="  mt-3 mr-3 p-2" >
+          className="  mt-3 mr-3 bg-red-200 rounded-lg drop-shadow-md p-2" >
           
             <MdDelete className="text-2xl text-red-500 "></MdDelete>
             </button>
-            <button className="p-2">
+            <button className="p-2 bg-green-200 rounded-lg drop-shadow-md  ">
                 <MdEdit className="text-2xl text-green-500"></MdEdit>
             </button>
           </div>

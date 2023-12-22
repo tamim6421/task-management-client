@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CreateTask from "../CreateTask/CreateTask";
 import TaskFrom from "../TaskForm/TaskFrom";
 import ListTask from "../CreateTask/ListTask/ListTask";
@@ -8,21 +8,27 @@ import useAxiosPublic from "../../hook/useAxiosPublic";
 
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const DashboardHome = () => {
+    const {user} = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
     const [tasks, setTasks] = useState([])
     console.log('tasks',tasks)
 
     useEffect( () =>{
-        setTasks(JSON.parse(localStorage.getItem("tasks") ))
+        const myTask = JSON.parse(localStorage.getItem("tasks") )
+        const filterTask = myTask?.filter(task => task.email === user?.email)
+
+        console.log(filterTask)
+        setTasks(filterTask)
         
-    } ,[])
+    } ,[user?.email])
   
     return (
 
         <DndProvider backend={HTML5Backend}>
-             <div className="md:pl-56 mx-auto bg-slate-100 ">
+             <div className="md:pl-56 mx-auto  bg-slate-50 ">
             {/* <TaskFrom></TaskFrom> */}
         
 

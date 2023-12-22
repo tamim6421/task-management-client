@@ -28,7 +28,7 @@ const Banner = () => {
                    <Link to='/login'>
                    <motion.button 
                     animate={{rotateZ : 360}}
-                    className='btn box bg-green-500 mt-10 shadow-lg hover:bg-green-600 text-white font-bold px-5 rounded-full' data-aos="fade-down">Get Started <BsArrowRight  className='text-white text-3xl font-bold'></BsArrowRight> </motion.button>
+                    className='btn box bg-green-500 mt-10 shadow-lg hover:bg-green-600 text-white font-bold px-5 rounded-full' data-aos="fade-down">Let's Explore <BsArrowRight  className='text-white text-3xl font-bold'></BsArrowRight> </motion.button>
                    </Link>
                 </div>
 

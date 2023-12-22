@@ -92,10 +92,10 @@ const CreateTask = ({tasks, setTasks}) => {
         <div>
                  <div className=" bg-green-50 py-5 pt-10 mb-10 ">
         <h1 className="text-center text-orange-400 text-2xl font-bold drop-shadow-xl ">Added task</h1>
-      <div className=" mx-auto">
+      <div className=" mx-auto ">
         <form className="shadow-xl rounded-lg p-3 " onSubmit={handleSubmit(onSubmit)}>
 
-          {/* recipe name  */}
+         
 
           <div className="form-control w-full ">
             <label className="label">
